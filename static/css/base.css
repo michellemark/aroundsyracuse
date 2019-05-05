@@ -1,0 +1,196 @@
+html,
+body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif !important;
+    background-color: var(--primary);
+    color: #ffffff;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Prata', serif !important;
+}
+h1,
+h2 {
+    margin-top: 0.75em;
+}
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0.5em;
+}
+main {
+    background-color: #ffffff;
+    color: var(--gray-dark);
+}
+#site-logo {
+    width: 243px;
+    max-width: 243px;
+}
+/* blog styles */
+#blog-wrapper .aldryn-newsblog-sidebar {
+    background-color: var(--light);
+    border-radius: 5px;
+}
+#blog-wrapper .aldryn-newsblog-sidebar form,
+#blog-wrapper .blog-categories,
+#blog-wrapper .blog-tags {
+    list-style: none none;
+    margin: 0;
+    padding: 0.6em;
+    background-color: var(--light);
+    border-radius: 5px;
+    -webkit-box-shadow: 3px 2px 2px 0px var(--gray);
+    -moz-box-shadow: 3px 2px 2px 0px var(--gray);
+    box-shadow: 3px 2px 2px 0px var(--gray);
+}
+#blog-wrapper .aldryn-newsblog-sidebar form > input {
+    width: 75%;
+}
+#blog-wrapper .aldryn-newsblog-sidebar form > button {
+    width: 18%;
+    color: var(--primary);
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+#blog-wrapper .aldryn-newsblog-sidebar form > button:hover,
+#blog-wrapper .aldryn-newsblog-sidebar form > button:active {
+    background-color: var(--light);
+    border: 1px solid var(--primary);
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+}
+#blog-wrapper .blog-categories li,
+#blog-wrapper .blog-tags li {
+    display: block;
+    margin: auto 0.3em;
+    font-size: 1em;
+}
+#blog-wrapper .blog-categories:before {
+    content: "Browse By Category:"
+}
+#blog-wrapper .blog-tags:before {
+    content: "Browse By Tag:"
+}
+#blog-wrapper h2 small {
+    font-size: 0.5em;
+}
+#blog-wrapper .lead-in {
+    font-size: 1.2em;
+}
+#blog-wrapper .article-content {
+    font-size: 1.1em;
+}
+#blog-wrapper #article-search-results h3 {
+    margin: 1em 0;
+    padding: 0;
+}
+#blog-wrapper #article-search-results li {
+    margin: 0.5em 0;
+    padding: 0.5em;
+}
+#blog-wrapper #article-search-results a {
+    border: none;
+}
+#blog-wrapper #article-search-results a:hover,
+#blog-wrapper #article-search-results a:active {
+    border: none;
+    text-decoration: underline;
+}
+/* Fix Facebook share button alignment */
+.fb_iframe_widget span {
+    vertical-align: baseline !important;
+}
+/* Photo styles */
+figcaption {
+    font-family: "Prata", serif;
+    font-size: 0.9em;
+    font-style: italic;
+    text-align: center;
+}
+img.photo {
+    border: none;
+}
+img.full-width {
+    width: 100%;
+}
+img.inline-photo {
+    display: inline;
+    margin: 1em;
+}
+figure.inline-photo,
+figcaption.inline-photo {
+    display: inline;
+    text-align: left;
+}
+figure.caption-overlay {
+    position: relative;
+    z-index: 0;
+}
+img.caption-overlay {
+    position: relative;
+    z-index: 20;
+}
+figure.caption-overlay figcaption {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    z-index: 200;
+    font-size: 1em;
+    font-weight: bold;
+}
+/* blockquotes */
+blockquote.blockquote {
+    color: var(--blue);
+    background-color: var(--light);
+    font-family: "Prata", serif;
+    font-size: 1.4em;
+    line-height: 1.6em;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    position: relative;
+    quotes: "\201C" "\201D";
+}
+blockquote.blockquote:before, blockquote.blockquote:after {
+    display: block;
+    font-size: 80px;
+    position: absolute;
+}
+blockquote.blockquote:before {
+    content: open-quote;
+    left: 0;
+    top: 0;
+}
+blockquote.blockquote:after {
+    bottom: 0;
+    content: close-quote;
+    right: 0;
+}
+blockquote.blockquote cite {
+    color: var(--blue);
+    font-size: 0.9em;
+    font-weight: bold;
+}
+/* responsive YouTube embed */
+.responsive-video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+.responsive-video-embed iframe,
+.responsive-video-embed object,
+.responsive-video-embed embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

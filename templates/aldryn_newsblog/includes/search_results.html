@@ -1,0 +1,23 @@
+{% extends "aldryn_newsblog/base.html" %}
+{% load i18n apphooks_config_tags %}
+{% block newsblog_content %}
+    <ol id="article-search-results">
+        <h3>{% blocktrans with query=query %}Most recent articles containing "<strong>{{ query }}</strong>"{% endblocktrans %}</h3>
+        {% for article in object_list %}
+            {% if article.is_published %}
+            <li>
+                <a href="{% namespace_url "article-detail" article.slug namespace=view.app_config.namespace default='' %}">
+                    <strong>{{ article.title }}:</strong><br />
+                    {{ article.lead_in|striptags|truncatewords:"20"|safe }}
+                </a>
+            </li>
+            {% endif %}
+        {% empty %}
+            {% if query %}
+                <p>{% blocktrans with query=query %}Sorry, no matching articles found.  Try another word?{% endblocktrans %}</p>
+            {% else %}
+                <p>{% trans "Enter a word to search for so we can try find what you are looking for." %}</p>
+            {% endif %}
+        {% endfor %}
+    </ol>
+{% endblock %}

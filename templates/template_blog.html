@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load staticfiles i18n cms_tags sekizai_tags apphooks_config_tags %}
+{% block page_content %}
+    <div class="col-12">
+        <div id="blog-hero">
+            {% placeholder banner_image %}
+        </div>
+    </div>
+    <div class="col-12">
+        {% placeholder "content" %}
+    </div>
+{% endblock page_content %}

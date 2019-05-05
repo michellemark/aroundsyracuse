@@ -1,0 +1,11 @@
+{% load static cms_tags sekizai_tags %}
+<footer id="site-footer" class="m-0 py-3 bg-primary text-white">
+    <div class="container">
+        <div id="site-copyright">
+            Copyright &copy; Around Syracuse Realty {% now "Y" %}
+        </div>
+        <div id="site-footer-content">
+            {% static_placeholder "footer" %}
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,15 @@
+{% load menu_tags cms_tags sekizai_tags static  %}
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light col-12 p-2 m-0 d-flex justify-content-between">
+    <span class="col-12 col-md-4 m-0 p-0">
+        <a href="/">
+            <img id="site-logo"
+                 src="{% static 'images/around-syracuse-realty-alt3.png' %}"
+                 alt="Around Syracuse Logo">
+        </a>
+    </span>
+        <span class="col-12 col-md-8 m-0 p-0 d-inline-flex">
+        {% show_menu 0 100 100 100 "site-menu.html" %}
+    </span>
+    </nav>
+</div>

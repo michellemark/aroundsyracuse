@@ -1,0 +1,24 @@
+{% load i18n cms_tags %}
+{% if instance.label %}
+<h4>
+{{ instance.label }}
+</h4>
+{% endif %}
+<div class="responsive-video-embed">
+{% if instance.embed_link %}
+    <iframe src="{{ instance.embed_link }}" {{ instance.attributes_str }} frameborder="0" allowfullscreen="true" width="853" height="480"></iframe>
+    {% with disabled=instance.embed_link %}
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    {% endwith %}
+{% else %}
+    <video controls {{ instance.attributes_str }}
+        {% if instance.poster %} poster="{{ instance.poster.url }}"{% endif %}>
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+        {% trans "Your browser doesn't support this video format." %}
+    </video>
+{% endif %}
+ </div>

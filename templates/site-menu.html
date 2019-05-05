@@ -1,0 +1,58 @@
+{% load menu_tags %}
+<nav id="site-navigation"
+     class="navbar navbar-expand-md navbar-light bg-light justify-content-between col-12">
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {% for child in children %}
+            <!-- no child pages  -->
+            {% if child.is_leaf_node %}
+            <li class="nav-item{% if request.get_full_path == child.get_absolute_url %} active{% endif %}">
+                <a class="nav-link" href="{{ child.get_absolute_url }}">
+                    {{ child.get_menu_title }}
+                </a>
+            </li>
+            {% endif %}
+            <!-- has child pages  -->
+            {% if not child.is_leaf_node or child.ancestor %}
+            <li class="nav-item dropdown{% if request.get_full_path == child.get_absolute_url %} active{% endif %}">
+                <a class="nav-link dropdown-toggle{% if request.get_full_path == child.get_absolute_url %} active{% endif %}{% if child.get_descendants %}{% for kid in child.get_descendants %}{% if request.get_full_path == kid.get_absolute_url %} active{% endif %}{% endfor %}{% endif %}"
+                   href="{{ child.get_absolute_url }}"
+                   id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    {{ child.get_menu_title }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item{% if request.get_full_path == child.get_absolute_url %} active{% endif %}"
+                       href="{{ child.get_absolute_url }}">
+                        {{ child.get_menu_title }}
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    {% if child.get_descendants %}
+                        {% for kid in child.get_descendants %}
+                            <a class="dropdown-item{% if request.get_full_path == kid.get_absolute_url %} active{% endif %}"
+                               href="{{ kid.get_absolute_url }}">
+                                {{ kid.get_menu_title }}
+                            </a>
+                            {% if not forloop.last %}
+                            <div class="dropdown-divider"></div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <form class="form-inline ml-2">
+            <input class="col-8 col-md-5 col-lg-8 form-control" type="search"
+                   placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark" type="submit">Search</button>
+        </form>
+    </div>
+</nav>

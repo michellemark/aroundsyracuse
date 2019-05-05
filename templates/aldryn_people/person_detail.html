@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ person.name }} - {{ block.super }}{% endblock %}
+{% block page_content %}
+    {% include "aldryn_people/includes/person.html" with person=person detail_view="true" %}
+{% endblock page_content %}

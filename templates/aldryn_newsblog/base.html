@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+{% block page_content %}
+<div class="container-fluid  py-4">
+    <div id="blog-wrapper" class="row">
+        <div class="col-12 col-sm-8 col-lg-10">
+            {% if view.show_header %}
+                {% static_placeholder "newsblog_feature" %}
+            {% endif %}
+            <div class="aldryn aldryn-newsblog">
+                {% block newsblog_content %}{% endblock %}
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 col-lg-2 aldryn-newsblog aldryn-newsblog-sidebar p-2">
+            {% static_placeholder "newsblog_sidebar" %}
+            {% block newsblog_sidebar %}{% endblock %}
+        </div>
+    </div>
+    {% block newsblog_footer %}{% endblock %}
+</div>
+{% endblock page_content %}
+
