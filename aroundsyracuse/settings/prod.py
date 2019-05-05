@@ -1,23 +1,32 @@
 import os
 import boto3
+import logging
 
 
-ssm = boto3.client("ssm", region_name="us-east-1")
+def get_ssm_parameter(parameter_name):
+    parameter_value = None
+
+    try:
+        ssm_parameter = ssm.get_parameter(Name=parameter_name, WithDecryption=True)
+    except:
+        logger.error(f"SSM parameter not found : {parameter_name}")
+    else:
+        parameter_value = ssm_parameter["Parameter"]["Value"]
+
+    return parameter_value
+
+
+logger = logging.getLogger(__name__)
+session = boto3.Session(region_name="us-east-1")
+ssm = session.client("ssm")
 SETTINGS_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.join(SETTINGS_DIR, '..')
-
-ssm_secret_key = ssm.get_parameter(Name='/AroundSyracuse/Prod/SECRET_KEY',
-                                   WithDecryption=True)
-SECRET_KEY = ssm_secret_key["Parameter"]["Value"]
-ssm_my_email = ssm.get_parameter(Name="/AroundSyracuse/Prod/DEFAULT_FROM_EMAIL", WithDecryption=True)
-DEFAULT_FROM_EMAIL = ssm_my_email["Parameter"]["Value"]
+SECRET_KEY = get_ssm_parameter("/AroundSyracuse/Prod/SECRET_KEY")
+DEFAULT_FROM_EMAIL = get_ssm_parameter("/AroundSyracuse/Prod/DEFAULT_FROM_EMAIL")
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
-ssm_site_admin_name = ssm.get_parameter(Name="/AroundSyracuse/SiteAdmin/Name",
-                                       WithDecryption=True)
-ssm_site_admin_email = ssm.get_parameter(Name="/AroundSyracuse/SiteAdmin/Email",
-                                        WithDecryption=True)
-ADMINS = [(ssm_site_admin_name["Parameter"]["Value"],
-          ssm_site_admin_email["Parameter"]["Value"])]
+ssm_site_admin_name = get_ssm_parameter("/AroundSyracuse/SiteAdmin/Name")
+ssm_site_admin_email = get_ssm_parameter("/AroundSyracuse/SiteAdmin/Email")
+ADMINS = [(ssm_site_admin_name, ssm_site_admin_email)]
 DEBUG = False
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
@@ -109,26 +118,20 @@ TEMPLATES = [
     },
 ]
 WSGI_APPLICATION = 'aroundsyracuse.wsgi.application'
-ssm_db_engine = ssm.get_parameter(Name='/AroundSyracuse/Prod/DB_ENGINE',
-                                  WithDecryption=True)
-ssm_db_name = ssm.get_parameter(Name='/AroundSyracuse/Prod/DB_NAME',
-                                WithDecryption=True)
-ssm_db_user = ssm.get_parameter(Name='/AroundSyracuse/Prod/DB_USERNAME',
-                                WithDecryption=True)
-ssm_db_password = ssm.get_parameter(Name='/AroundSyracuse/Prod/DB_PASSWORD',
-                                    WithDecryption=True)
-ssm_db_host = ssm.get_parameter(Name='/AroundSyracuse/Prod/DB_HOSTNAME',
-                                WithDecryption=True)
-ssm_db_port = ssm.get_parameter(Name='/AroundSyracuse/Prod/DB_PORT',
-                                WithDecryption=True)
+ssm_db_engine = get_ssm_parameter("/AroundSyracuse/Prod/DB_ENGINE")
+ssm_db_name = get_ssm_parameter("/AroundSyracuse/Prod/DB_NAME")
+ssm_db_user = get_ssm_parameter("/AroundSyracuse/Prod/DB_USERNAME")
+ssm_db_password = get_ssm_parameter("/AroundSyracuse/Prod/DB_PASSWORD")
+ssm_db_host = get_ssm_parameter("/AroundSyracuse/Prod/DB_HOSTNAME")
+ssm_db_port = get_ssm_parameter("/AroundSyracuse/Prod/DB_PORT")
 DATABASES = {
     'default': {
-        'ENGINE': ssm_db_engine["Parameter"]["Value"],
-        'NAME': ssm_db_name["Parameter"]["Value"],
-        'USER': ssm_db_user["Parameter"]["Value"],
-        'PASSWORD': ssm_db_password["Parameter"]["Value"],
-        'HOST': ssm_db_host["Parameter"]["Value"],
-        'PORT': ssm_db_port["Parameter"]["Value"],
+        'ENGINE': ssm_db_engine,
+        'NAME': ssm_db_name,
+        'USER': ssm_db_user,
+        'PASSWORD': ssm_db_password,
+        'HOST': ssm_db_host,
+        'PORT': ssm_db_port,
         'CONN_MAX_AGE': 600,
     }
 }
@@ -184,20 +187,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_URL = '/static/'
-ssm_static_root = ssm.get_parameter(Name='/AroundSyracuse/Prod/STATIC_ROOT', WithDecryption=True)
-STATIC_ROOT = ssm_static_root["Parameter"]["Value"]
+STATIC_ROOT = get_ssm_parameter("/AroundSyracuse/Prod/STATIC_ROOT")
 MEDIA_URL = "/media/"
-ssm_media_root = ssm.get_parameter(Name='/AroundSyracuse/Prod/MEDIA_ROOT', WithDecryption=True)
-MEDIA_ROOT = ssm_media_root["Parameter"]["Value"]
+MEDIA_ROOT = get_ssm_parameter("/AroundSyracuse/Prod/MEDIA_ROOT")
 FIXTURE_DIRS = [
     os.path.join(BASE_DIR, "fixtures"),
 ]
-ssm_recaptcha_private_key = ssm.get_parameter(Name='/AroundSyracuse/Prod/RECAPTCHA_PRIVATE_KEY',
-                                              WithDecryption=True)
-ssm_recaptcha_public_key = ssm.get_parameter(Name='/AroundSyracuse/Prod/RECAPTCHA_PUBLIC_KEY',
-                                             WithDecryption=True)
-RECAPTCHA_PRIVATE_KEY = ssm_recaptcha_private_key["Parameter"]["Value"]
-RECAPTCHA_PUBLIC_KEY = ssm_recaptcha_public_key["Parameter"]["Value"]
+RECAPTCHA_PRIVATE_KEY = get_ssm_parameter("/AroundSyracuse/Prod/RECAPTCHA_PRIVATE_KEY")
+RECAPTCHA_PUBLIC_KEY = get_ssm_parameter("/AroundSyracuse/Prod/RECAPTCHA_PUBLIC_KEY")
 CMS_TEMPLATES = [
     ('fullwidth.html', 'Fullwidth'),
     ('fullwidth-narrow-margins.html', 'Fullwidth Narrow Margins'),
