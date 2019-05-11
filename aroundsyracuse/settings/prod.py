@@ -2,6 +2,9 @@ import os
 import boto3
 import logging
 
+from cms import constants
+from django.utils.translation import gettext
+
 
 def get_ssm_parameter(parameter_name):
     parameter_value = None
@@ -155,6 +158,31 @@ LANGUAGES = [
     ('fr', 'French'),
     ('es', 'Spanish')
 ]
+CMS_LANGUAGES = {
+    1: [
+        {
+            'code': 'en',
+            'name': gettext('English'),
+            'public': True,
+        },
+        {
+            'code': 'es',
+            'name': gettext('Spanish'),
+            'fallbacks': ['en', 'fr'],
+            'public': True,
+            'hide_untranslated': True,
+            'redirect_on_fallback': True,
+        },
+        {
+            'code': 'fr',
+            'name': gettext('French'),
+            'fallbacks': ['en', 'es'],
+            'public': True,
+            'hide_untranslated': True,
+            'redirect_on_fallback': True,
+        },
+    ]
+}
 TIME_ZONE = 'America/New_York'
 USE_I18N = True
 USE_L10N = True
@@ -195,6 +223,9 @@ FIXTURE_DIRS = [
 ]
 RECAPTCHA_PRIVATE_KEY = get_ssm_parameter("/AroundSyracuse/Prod/RECAPTCHA_PRIVATE_KEY")
 RECAPTCHA_PUBLIC_KEY = get_ssm_parameter("/AroundSyracuse/Prod/RECAPTCHA_PUBLIC_KEY")
+CMS_PERMISSION = True
+CMS_TOOLBAR_ANONYMOUS_ON = False
+CMS_DEFAULT_X_FRAME_OPTIONS = constants.X_FRAME_OPTIONS_SAMEORIGIN
 CMS_TEMPLATES = [
     ('fullwidth.html', 'Fullwidth'),
     ('fullwidth-narrow-margins.html', 'Fullwidth Narrow Margins'),
@@ -203,6 +234,8 @@ CMS_TEMPLATES = [
     ('home.html', 'Home page template'),
     ('template_blog.html', 'Blog Template'),
 ]
+CMS_PAGE_WIZARD_DEFAULT_TEMPLATE = "fullwidth.html"
+CMS_PAGE_WIZARD_CONTENT_PLACEHOLDER = "content"
 CMS_PLACEHOLDER_CONF = {
     'home_featured_article': {
         'name': 'Home Featured Article',
