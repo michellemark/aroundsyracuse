@@ -3,7 +3,6 @@ import boto3
 import logging
 
 from cms import constants
-from django.utils.translation import gettext
 
 
 def get_ssm_parameter(parameter_name):
@@ -162,12 +161,12 @@ CMS_LANGUAGES = {
     1: [
         {
             'code': 'en',
-            'name': gettext('English'),
+            'name': 'English',
             'public': True,
         },
         {
             'code': 'es',
-            'name': gettext('Spanish'),
+            'name': 'Spanish',
             'fallbacks': ['en', 'fr'],
             'public': True,
             'hide_untranslated': True,
@@ -175,7 +174,7 @@ CMS_LANGUAGES = {
         },
         {
             'code': 'fr',
-            'name': gettext('French'),
+            'name': 'French',
             'fallbacks': ['en', 'es'],
             'public': True,
             'hide_untranslated': True,
