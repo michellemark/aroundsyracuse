@@ -35,7 +35,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 APPEND_SLASH = True
-ALLOWED_HOSTS = ["*.aroundsyracuserealty.com"]
+ALLOWED_HOSTS = [".aroundsyracuserealty.com"]
 SITE_ID = 2
 INSTALLED_APPS = [
     'djangocms_admin_style',
