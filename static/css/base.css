@@ -27,6 +27,9 @@ main {
     background-color: #ffffff;
     color: var(--gray-dark);
 }
+hr {
+    background-color: #BCC0C3;
+}
 #site-logo {
     width: 243px;
     max-width: 243px;
