@@ -180,6 +180,35 @@ blockquote.blockquote cite {
     font-size: 0.9em;
     font-weight: bold;
 }
+/* Banner Plugin */
+div.banner-content > div.card {
+    border: none !important;
+}
+.full-width {
+    width: 100% !important;
+    margin-right: -45px !important;
+    margin-left: -15px !important;
+    padding: 0 !important;
+    background-size: cover;
+}
+.wide-centered {
+    width: 90% !important;
+    padding: 0 !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+.text-left-top {
+    top: 8px;
+    left: 16px;
+}
+.text-center {
+    top: 50%;
+    left: 50%;
+}
+.text-left-bottom {
+    bottom: 8px;
+    left: 16px;
+}
 /* responsive YouTube embed */
 .responsive-video-embed {
     position: relative;

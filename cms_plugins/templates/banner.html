@@ -1,0 +1,17 @@
+{% load cms_tags %}
+<div class="{{ instance.width }}"
+     style="display: block; height: {{instance.height}}px;
+             background-image: url('{{ instance.background_image.url }}');
+             background-position: center;
+             background-repeat: no-repeat;
+             box-sizing: border-box;
+             margin-bottom: 2em; z-index: -1">
+    {% if instance.child_plugin_instances %}
+        {% for plugin in instance.child_plugin_instances %}
+        <div class="banner-content" style="z-index: {{forloop.counter}}">
+            {% render_plugin plugin %}
+        </div>
+        {% endfor %}
+    {% endif %}
+
+</div>
