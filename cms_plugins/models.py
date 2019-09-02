@@ -19,7 +19,6 @@ class BannerConfig(CMSPlugin):
     )
     height = models.IntegerField(
         verbose_name="Height in Pixels",
-        max_length=6,
         default=200
     )
 
