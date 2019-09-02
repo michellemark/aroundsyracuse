@@ -105,6 +105,7 @@ INSTALLED_APPS = [
     'taggit',
     'djangocms_googlemap',
     'cms_plugins',
+    'sellers',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,7 +126,9 @@ ROOT_URLCONF = 'aroundsyracuse.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': [os.path.join(BASE_DIR, "templates"),
+                 os.path.join(BASE_DIR, "cms_plugins"),
+                 os.path.join(BASE_DIR, "sellers")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
