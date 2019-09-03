@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'haystack',
     'cms',
     'menus',
     'treebeard',
@@ -344,3 +345,10 @@ CKEDITOR_SETTINGS = {
     'toolbar': 'CMS',
     'stylesSet': 'default:/static/js/addons/ckeditor.wysiwyg.js'
 }
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
+ALDRYN_NEWSBLOG_UPDATE_SEARCH_DATA_ON_SAVE = True
+ALDRYN_NEWSBLOG_SEARCH = True
