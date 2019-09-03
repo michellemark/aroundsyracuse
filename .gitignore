@@ -57,7 +57,6 @@ local_settings.py
 */settings/dev.py
 static_root/
 media/
-*/migrations/
 
 # Flask stuff:
 instance/
