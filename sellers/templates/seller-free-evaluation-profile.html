@@ -1,138 +1,142 @@
 {% extends 'base.html' %}
+{% load staticfiles cms_tags %}
 {% block page_content %}
     <div class="container">
-        <h1>
-            Free Home Evaluation
-        </h1>
+        <div class="row">
+            {% render_placeholder object.seller_profile_instructions %}
+            {% static_placeholder "seller_profile_instructions" %}
+        </div>
         {% if form %}
-        <div class="card col-12 col-md-10 col-lg-8">
-            <div class="card-body">
-                <h5 class="card-title">
-                    First, some basic information about the property
-                </h5>
-                <form class="form form-horizontal" role="form" method="post"
-                      action="{% url 'sellerstep1' %}">
-                    {% csrf_token %}
-                    {% if form.non_field_errors %}
-                        <ul class="errorlist">
-                            Please correct the following issues below:
-                            {% for message in form.non_field_errors %}
-                                <li class="error">{{ message|safe }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                    <div class="form-group{% if form.first_name.errors %} has-error{% endif %}">
-                        {{ form.first_name.errors }}
-                        <label for="{{ form.first_name.auto_id }}">
-                            {{ form.first_name.label }} <span class="text-danger">*</span>
-                            <span class="glyphicon glyphicon-asterisk required-field"></span>
-                        </label>
-                        <span>
-                            {{ form.first_name }}
-                        </span>
-                    </div>
-                    <div class="form-group{% if form.last_name.errors %} has-error{% endif %}">
-                        {{ form.last_name.errors }}
-                        <label for="{{ form.last_name.auto_id }}">
-                            {{ form.last_name.label }} <span class="text-danger">*</span>
-                            <span class="glyphicon glyphicon-asterisk required-field"></span>
-                        </label>
-                        <span>
-                            {{ form.last_name }}
-                        </span>
-                    </div>
-                    <div class="form-group{% if form.address.errors %} has-error{% endif %}">
-                        {{ form.address.errors }}
-                        <label for="{{ form.address.auto_id }}">
-                            {{ form.address.label }} <span class="text-danger">*</span>
-                        </label>
-                        <span>
-                            {{ form.address }}
-                        </span>
-                    </div>
-                    <div class="form-group{% if form.city.errors %} has-error{% endif %}">
-                        {{ form.city.errors }}
-                        <label for="{{ form.city.auto_id }}">
-                            {{ form.city.label }} <span class="text-danger">*</span>
-                        </label>
-                        <span>
-                            {{ form.city }}
-                        </span>
-                    </div>
-                    <div class="form-group{% if form.zip_code.errors %} has-error{% endif %}">
-                        {{ form.zip_code.errors }}
-                        <label for="{{ form.zip_code.auto_id }}">
-                            {{ form.zip_code.label }} <span class="text-danger">*</span>
-                        </label>
-                        <span>
-                            {{ form.zip_code }}
-                        </span>
-                    </div>
-                    <div class="form-group{% if form.email.errors %} has-error{% endif %}">
-                        {{ form.email.errors }}
-                        <label for="{{ form.email.auto_id }}">
-                            {{ form.email.label }} <span class="text-danger">*</span>
-                        </label>
-                        <span>
-                            {{ form.email }}
-                        </span>
-                    </div>
-                    <div class="form-group{% if form.phone_number.errors %} has-error{% endif %}">
-                        <label for="{{ form.phone_number.auto_id }}">
-                            {{ form.phone_number.label }}
-                            <span class="text-understated"> (number values only)</span>
-                        </label>
-                        <div class="form-group{% if form.phone_number.errors %} has-error{% endif %}">
-                            {{ form.phone_number.errors }}
-                            {{ form.is_phone_mobile.errors }}
-                            {{ form.permission_to_text.errors }}
-                            {{ form.phone_number }}
+        <div class="row">
+            <div class="card col-12 col-md-10 col-lg-8">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        First, some basic information about the property
+                    </h5>
+                    <form class="form form-horizontal" role="form" method="post"
+                          action="{% url 'sellerstep1' %}">
+                        {% csrf_token %}
+                        {% if form.non_field_errors %}
+                            <ul class="errorlist">
+                                Please correct the following issues below:
+                                {% for message in form.non_field_errors %}
+                                    <li class="error">{{ message|safe }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <div class="form-group{% if form.first_name.errors %} has-error{% endif %}">
+                            {{ form.first_name.errors }}
+                            <label for="{{ form.first_name.auto_id }}">
+                                {{ form.first_name.label }} <span class="text-danger">*</span>
+                                <span class="glyphicon glyphicon-asterisk required-field"></span>
+                            </label>
+                            <span>
+                                {{ form.first_name }}
+                            </span>
                         </div>
-                    </div>
-                    <div class="container-fluid">
-                        <span>Phone preferences</span>
-                        <div class="solid-well">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-1 col-md-offset-1">
-                                        <label for="{{ form.is_phone_mobile.auto_id }}"
-                                               class="{% if form.is_phone_mobile.errors %} has-error{% endif %}">
-                                            {{ form.is_phone_mobile }}
-                                        </label>
+                        <div class="form-group{% if form.last_name.errors %} has-error{% endif %}">
+                            {{ form.last_name.errors }}
+                            <label for="{{ form.last_name.auto_id }}">
+                                {{ form.last_name.label }} <span class="text-danger">*</span>
+                                <span class="glyphicon glyphicon-asterisk required-field"></span>
+                            </label>
+                            <span>
+                                {{ form.last_name }}
+                            </span>
+                        </div>
+                        <div class="form-group{% if form.address.errors %} has-error{% endif %}">
+                            {{ form.address.errors }}
+                            <label for="{{ form.address.auto_id }}">
+                                {{ form.address.label }} <span class="text-danger">*</span>
+                            </label>
+                            <span>
+                                {{ form.address }}
+                            </span>
+                        </div>
+                        <div class="form-group{% if form.city.errors %} has-error{% endif %}">
+                            {{ form.city.errors }}
+                            <label for="{{ form.city.auto_id }}">
+                                {{ form.city.label }} <span class="text-danger">*</span>
+                            </label>
+                            <span>
+                                {{ form.city }}
+                            </span>
+                        </div>
+                        <div class="form-group{% if form.zip_code.errors %} has-error{% endif %}">
+                            {{ form.zip_code.errors }}
+                            <label for="{{ form.zip_code.auto_id }}">
+                                {{ form.zip_code.label }} <span class="text-danger">*</span>
+                            </label>
+                            <span>
+                                {{ form.zip_code }}
+                            </span>
+                        </div>
+                        <div class="form-group{% if form.email.errors %} has-error{% endif %}">
+                            {{ form.email.errors }}
+                            <label for="{{ form.email.auto_id }}">
+                                {{ form.email.label }} <span class="text-danger">*</span>
+                            </label>
+                            <span>
+                                {{ form.email }}
+                            </span>
+                        </div>
+                        <div class="form-group{% if form.phone_number.errors %} has-error{% endif %}">
+                            <label for="{{ form.phone_number.auto_id }}">
+                                {{ form.phone_number.label }}
+                                <span class="text-understated"> (number values only)</span>
+                            </label>
+                            <div class="form-group{% if form.phone_number.errors %} has-error{% endif %}">
+                                {{ form.phone_number.errors }}
+                                {{ form.is_phone_mobile.errors }}
+                                {{ form.permission_to_text.errors }}
+                                {{ form.phone_number }}
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <span>Phone preferences</span>
+                            <div class="solid-well">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-1 col-md-offset-1">
+                                            <label for="{{ form.is_phone_mobile.auto_id }}"
+                                                   class="{% if form.is_phone_mobile.errors %} has-error{% endif %}">
+                                                {{ form.is_phone_mobile }}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>Is this your mobile phone?</p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-10">
-                                        <p>Is this your mobile phone?</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-1 col-md-offset-1">
-                                        <label for="{{ form.permission_to_text.auto_id }}"
-                                               class="{% if form.permission_to_text.errors %} has-error{% endif %}">
-                                            {{ form.permission_to_text }}
-                                        </label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <p>Permission to text this number?</p>
+                                    <div class="row">
+                                        <div class="col-md-1 col-md-offset-1">
+                                            <label for="{{ form.permission_to_text.auto_id }}"
+                                                   class="{% if form.permission_to_text.errors %} has-error{% endif %}">
+                                                {{ form.permission_to_text }}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>Permission to text this number?</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group{% if form.property_type.errors %} has-error{% endif %}">
-                        {{ form.property_type.errors }}
-                        <label for="{{ form.property_type.auto_id }}" class="full-label">
-                            {{ form.property_type.label }} <span class="text-danger">*</span>
-                        </label>
-                        <span class="full-input">
-                            {{ form.property_type }}
-                        </span>
-                    </div>
-                    <div class="form-group">
-                        <div class="well-lg">
-                            <input type="submit" class="btn btn-lg btn-primary col-xs-offset-1" value="Submit">
+                        <div class="form-group{% if form.property_type.errors %} has-error{% endif %}">
+                            {{ form.property_type.errors }}
+                            <label for="{{ form.property_type.auto_id }}" class="full-label">
+                                {{ form.property_type.label }} <span class="text-danger">*</span>
+                            </label>
+                            <span class="full-input">
+                                {{ form.property_type }}
+                            </span>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <div class="well-lg">
+                                <input type="submit" class="btn btn-lg btn-primary col-xs-offset-1" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         {% endif %}

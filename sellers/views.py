@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic import TemplateView
 
 from sellers.forms import SellerProfileForm
-from sellers.models import SellerProfile
+from sellers.models import SellerProfile, SellerProfileInstructionsPlaceholder
 
 
 class SellerProfileView(TemplateView):
@@ -17,6 +17,7 @@ class SellerProfileView(TemplateView):
         context['page_title'] = "Free home evaluation request - Step 1"
         context['extra_css'] = []
         context['extra_javascript'] = []
+        context['object'] = SellerProfileInstructionsPlaceholder.objects.get_or_create(pk=1)[0]
 
         return context
 

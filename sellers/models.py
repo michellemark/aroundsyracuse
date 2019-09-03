@@ -1,3 +1,4 @@
+from cms.models import PlaceholderField
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -58,3 +59,9 @@ class SellerProfile(models.Model):
     property_type = models.CharField(max_length=25,
                                      choices=PROPERTY_TYPE_CHOICES,
                                      default=SINGLE_FAMILY_HOME)
+
+
+class SellerProfileInstructionsPlaceholder(models.Model):
+    """Django CMS placeholder for use in seller profile to add cms content."""
+    seller_profile_instructions = PlaceholderField(slotname='seller_profile_instructions',
+                                                   related_name='seller_profile_instructions')

@@ -257,7 +257,20 @@ CMS_PLACEHOLDER_CONF = {
         'plugins': ['NewsBlogFeaturedArticlesPlugin', 'Bootstrap4PicturePlugin', 'TextPlugin']
     },
     'banner_image': {
-        'plugins': ['Bootstrap4PicturePlugin', ]
+        'plugins': ['TextPlugin',
+                    'Bootstrap4PicturePlugin',
+                    'Bootstrap4CardPlugin',
+                    'Bootstrap4CardInnerPlugin',
+                    'Bootstrap4LinkPlugin',
+                    'Bootstrap4SpacingPlugin']
+    },
+    'seller_profile_instructions': {
+        'plugins': ['BannerPlugin',
+                    'TextPlugin',
+                    'Bootstrap4CardPlugin',
+                    'Bootstrap4CardInnerPlugin',
+                    'Bootstrap4LinkPlugin',
+                    'Bootstrap4SpacingPlugin']
     }
 }
 THUMBNAIL_HIGH_RESOLUTION = True
