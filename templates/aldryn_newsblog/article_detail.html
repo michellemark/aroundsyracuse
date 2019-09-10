@@ -1,6 +1,5 @@
 {% extends "aldryn_newsblog/base.html" %}
 {% load i18n cms_tags apphooks_config_tags %}
-{% if article.published %}
 {% block title %}
     {{ article.title }} - {{ block.super }}
 {% endblock %}
@@ -8,27 +7,7 @@
     {% include "aldryn_newsblog/includes/article.html" with detail_view="true" %}
     <hr class="mt-5">
     <div class="mx-2 mb-3 align-bottom">
-        <!-- facebook share button -->
-        <div class="d-inline-block">
-            <div class="fb-share-button"
-                 data-href="https://wiseonerealty.com/cny-real-estate/news/"
-                 data-layout="button" data-size="large" data-mobile-iframe="false">
-                <a target="no"
-                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwiseonerealty.com{{ article.get_absolute_url|iriencode }}&amp;src=sdkpreparse"
-                   class="fb-xfbml-parse-ignore">
-                    Share
-                </a>
-            </div>
-        </div>
-        <!-- twitter share button -->
-        <div class="d-inline-block">
-            <a class="twitter-share-button"
-              href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwiseonerealty.com{{ article.get_absolute_url|iriencode }}"
-              data-size="large">
-                Tweet
-            </a>
-        </div>
-        <div class="d-inline-block">
+         <div class="d-inline-block">
             {% static_placeholder "newsblog_social" %}
         </div>
     </div>
@@ -58,4 +37,3 @@
     </ul>
     <hr class="my-5">
 {% endblock %}
-{% endif %}
