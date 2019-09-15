@@ -1,0 +1,31 @@
+.selector-available,
+.selector-chosen {
+    max-width: 100% !important;
+}
+select.filtered {
+    height: 200px !important;
+}
+#header {
+    height: auto !important;
+    background-color: #ffffff;
+    border-bottom: #5F4F3A solid 1px;
+    margin: 0;
+    padding: 0 1em 0 0 ;
+}
+#user-tools,
+#footer {
+    color: #5F4F3A !important;
+    font-weight: bold;
+}
+#user-tools a,
+#footer a {
+    color: #737E21 !important;
+    font-weight: bold;
+}
+#changelist-search img {
+    max-width: 20px;
+}
+
+#site-logo {
+    margin: 0.5em 0 0 0.5em;
+}

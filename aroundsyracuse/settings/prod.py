@@ -59,6 +59,8 @@ APPEND_SLASH = True
 ALLOWED_HOSTS = [".aroundsyracuserealty.com"]
 SITE_ID = 2
 INSTALLED_APPS = [
+    'flat_responsive',
+    'django.contrib.sitemaps',
     'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -107,6 +109,7 @@ INSTALLED_APPS = [
     'djangocms_googlemap',
     'cms_plugins',
     'sellers',
+    'custom_admin'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -232,6 +235,8 @@ LOGGING = {
 }
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "custom_admin"),
+    os.path.join(BASE_DIR, "sellers")
 ]
 STATIC_URL = '/static/'
 MEDIA_URL = "/media/"
