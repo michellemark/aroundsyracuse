@@ -1,5 +1,5 @@
 {% extends "aldryn_newsblog/base.html" %}
-{% load i18n apphooks_config_tags %}
+{% load i18n apphooks_config_tags sekizai_tags %}
 {% block newsblog_content %}
     {% for article in article_list %}
         {% include "aldryn_newsblog/includes/article.html" %}

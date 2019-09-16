@@ -1,7 +1,7 @@
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from cms_plugins.models import BannerConfig
+from cms_plugins.models import BannerConfig, LightSliderConfig
 
 
 class BannerPlugin(CMSPluginBase):
@@ -25,3 +25,19 @@ class BannerPlugin(CMSPluginBase):
 
 
 plugin_pool.register_plugin(BannerPlugin)
+
+
+class LightSliderGallery(CMSPluginBase):
+    model = LightSliderConfig
+    name = "Light Slider Gallery"
+    render_template = "light_slider_gallery.html"
+    cache = False
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'images': instance.get_folder_images(),
+        })
+        return context
+
+
+plugin_pool.register_plugin(LightSliderGallery)
