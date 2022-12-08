@@ -10,7 +10,7 @@ backport-collections==0.1
 bleach==3.1.0
 boto3==1.9.203
 botocore==1.12.203
-certifi==2019.6.16
+certifi==2022.12.7
 chardet==3.0.4
 Django==2.1.11
 django-appconf==1.0.3
